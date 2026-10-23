@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Gratitude</title>
+    <meta name="description" content="Keep track of small moments of gratitude." />
+    <meta name="theme-color" content="#f7f3ee" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1b1a19" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Gratitude" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" href="icons/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <h1>Gratitude</h1>
+      <button id="menu-button" class="icon-button" type="button" aria-label="Settings" aria-haspopup="dialog">
+        <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+          <circle cx="5" cy="12" r="2" />
+          <circle cx="12" cy="12" r="2" />
+          <circle cx="19" cy="12" r="2" />
+        </svg>
+      </button>
+    </header>
+
+    <main>
+      <form id="entry-form" class="composer" autocomplete="off">
+        <label for="entry-text" class="visually-hidden">New moment of gratitude</label>
+        <textarea id="entry-text" rows="3" placeholder="What are you grateful for right now?" required></textarea>
+        <button type="submit" class="primary">Save moment</button>
+      </form>
+
+      <p id="empty-state" class="empty-state" hidden>No moments yet. Your first one will show up here.</p>
+      <div id="entries" aria-live="polite"></div>
+    </main>
+
+    <dialog id="settings-dialog">
+      <form method="dialog" class="dialog-body">
+        <h2>Settings</h2>
+
+        <section>
+          <h3>Daily reminder</h3>
+          <p class="hint">Adds a repeating daily event with an alert to your phone's calendar.</p>
+          <div class="row">
+            <label for="reminder-time">Time</label>
+            <select id="reminder-time"></select>
+          </div>
+          <a id="reminder-link" class="button" href="reminders/2100.ics" target="_blank" rel="noopener">Add to calendar</a>
+        </section>
+
+        <section>
+          <h3>Backup</h3>
+          <p class="hint">Moments are stored only on this device. Export a backup now and then.</p>
+          <div class="button-row">
+            <button id="export-button" type="button">Export</button>
+            <button id="import-button" type="button">Import</button>
+          </div>
+          <input id="import-file" type="file" accept="application/json,.json" hidden />
+        </section>
+
+        <div class="dialog-actions">
+          <button value="close" class="primary">Done</button>
+        </div>
+      </form>
+    </dialog>
+
+    <template id="entry-template">
+      <article class="entry">
+        <p class="entry-text"></p>
+        <div class="entry-meta">
+          <time class="entry-time"></time>
+          <span class="entry-edited" hidden>· edited</span>
+          <span class="spacer"></span>
+          <button type="button" class="link-button" data-action="edit">Edit</button>
+          <button type="button" class="link-button danger" data-action="delete">Delete</button>
+        </div>
+      </article>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>

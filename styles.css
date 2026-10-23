@@ -1,0 +1,253 @@
+:root {
+  --bg: #f7f3ee;
+  --surface: #ffffff;
+  --text: #2a2623;
+  --muted: #7a716a;
+  --border: #e6ddd3;
+  --accent: #c2603a;
+  --accent-text: #ffffff;
+  --danger: #b3261e;
+  --radius: 14px;
+  --shadow: 0 1px 2px rgb(0 0 0 / 6%);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1b1a19;
+    --surface: #262422;
+    --text: #ece6df;
+    --muted: #a39a92;
+    --border: #3a3633;
+    --accent: #e08a62;
+    --accent-text: #1b1a19;
+    --danger: #f2817a;
+    --shadow: none;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 17px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom)
+    env(safe-area-inset-left);
+}
+
+.app-header,
+main {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 16px;
+}
+
+h1 {
+  font-size: 28px;
+  margin: 0;
+}
+
+button,
+.button {
+  display: inline-block;
+  font: inherit;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-radius: 10px;
+  padding: 10px 16px;
+}
+
+button.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-text);
+  font-weight: 600;
+}
+
+.icon-button {
+  border: none;
+  background: none;
+  padding: 8px;
+  line-height: 0;
+}
+
+.icon-button svg {
+  fill: var(--muted);
+}
+
+.link-button {
+  border: none;
+  background: none;
+  padding: 6px 4px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.link-button.danger {
+  color: var(--danger);
+}
+
+textarea,
+input,
+select {
+  font: inherit;
+  color: inherit;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px;
+}
+
+textarea {
+  width: 100%;
+  resize: vertical;
+  min-height: 3em;
+}
+
+textarea:focus,
+input:focus,
+select:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: -1px;
+}
+
+.composer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 16px 0 24px;
+}
+
+.composer button {
+  align-self: flex-end;
+}
+
+.day-group h2 {
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  margin: 24px 0 8px;
+}
+
+.entry {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 14px 16px 6px;
+  margin-bottom: 10px;
+}
+
+.entry-text {
+  margin: 0 0 6px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.entry-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.spacer {
+  flex: 1;
+}
+
+.entry textarea {
+  margin-bottom: 8px;
+}
+
+.edit-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding-bottom: 8px;
+}
+
+.empty-state {
+  text-align: center;
+  color: var(--muted);
+  margin-top: 48px;
+}
+
+dialog {
+  border: none;
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
+  width: min(92vw, 420px);
+  padding: 0;
+}
+
+dialog::backdrop {
+  background: rgb(0 0 0 / 40%);
+}
+
+.dialog-body {
+  padding: 20px;
+}
+
+.dialog-body h2 {
+  margin: 0 0 8px;
+  font-size: 22px;
+}
+
+.dialog-body h3 {
+  margin: 20px 0 4px;
+  font-size: 17px;
+}
+
+.hint {
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.button-row,
+.dialog-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.dialog-actions {
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
